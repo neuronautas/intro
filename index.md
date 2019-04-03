@@ -6,7 +6,7 @@ Bem-vindos
 
 <table>
   <thead>
-    <tr><th>Cadetes</th><th></th></tr>
+    <tr><th>Neurocadetes</th><th></th></tr>
   </thead>
   <tbody id="table">
   </tbody>
