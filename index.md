@@ -29,12 +29,13 @@ function shuffle(list) {
 }
 
 function activate() {
+    var maxEntries = 16;
     var table = document.getElementById('table');
     var entries = document.getElementById('entries');
     var list = entries.value.split('\n').filter(Boolean);
     entries.parentNode.parentNode.style.display = 'none';
     shuffle(list);
-    for (var i = 0; i < list.length; i++) {
+    for (var i = 0; i < Math.min(list.length, maxEntries); i++) {
         var row = table.insertRow(table.rows.length);
         var cell = row.insertCell(0);
         cell.innerHTML = list[i];
