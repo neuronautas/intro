@@ -6,7 +6,7 @@ Bem-vindos
 
 <table>
   <thead>
-    <tr><th>Cadetes</th></tr>
+    <tr><th>Cadetes</th><th></th></tr>
   </thead>
   <tbody id="table">
   </tbody>
@@ -19,6 +19,10 @@ Bem-vindos
 
 <script language="javascript">
 
+var draw = 0;
+var maxDraws = 2;
+var maxEntries = 16;
+
 function shuffle(list) {
     for (var i = list.length - 1; i > 0; i--) {
         var index = Math.floor(Math.random() * (i + 1));
@@ -29,16 +33,21 @@ function shuffle(list) {
 }
 
 function activate() {
-    var maxEntries = 16;
     var table = document.getElementById('table');
     var entries = document.getElementById('entries');
     var list = entries.value.split('\n').filter(Boolean);
-    entries.parentNode.parentNode.style.display = 'none';
+    entries.value = '';
     shuffle(list);
-    for (var i = 0; i < Math.min(list.length, maxEntries); i++) {
-        var row = table.insertRow(table.rows.length);
-        var cell = row.insertCell(0);
+    for (var i = 0; i < Math.min(list.length, maxEntries / maxDraws); i++) {
+        var row = i < table.rows.length
+            ? table.rows[i]
+            : table.insertRow(table.rows.length);
+        var cell = row.insertCell(draw);
         cell.innerHTML = list[i];
+    }
+
+    if (++draw == maxDraws) {
+        entries.parentNode.parentNode.style.display = 'none';
     }
 }
 
