@@ -17,6 +17,20 @@ Bem-vindos
   <div><input type="button" value="Activate" onclick="activate()" /></div>
 </div>
 
+<small><a href="javascript:showsource()">How does it work?</a></small>
+
+<div id='source' markdown="1" style="display:none">
+Shuffling the list was done using Richer Durstenfeld version of the [Fisher-Yates algorithm](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle):
+```js
+// To shuffle a list with n elements (indices 0..n-1)
+function shuffle(list):
+    for i from n-1 downto 1 do
+        j = random integer between [0, i]
+        exchange list[j] and list[i]
+```
+Durstenfeld, R. (July 1964). "Algorithm 235: Random permutation". Communications of the ACM. 7 (7): 420. [doi:10.1145/364520.364540](https://doi.org/10.1145%2F364520.364540).
+</div>
+
 <script language="javascript">
 
 var draw = 0;
@@ -49,6 +63,11 @@ function activate() {
     if (++draw == maxDraws) {
         entries.parentNode.parentNode.style.display = 'none';
     }
+}
+
+function showsource() {
+    var source = document.getElementById('source');
+    source.style.display = 'block';
 }
 
 </script>
